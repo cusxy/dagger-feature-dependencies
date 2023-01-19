@@ -1,0 +1,15 @@
+rootProject.name = 'DaggerPlayground'
+
+include ':app'
+
+def includeProject(file) {
+    if (file.name.startsWith('.')) return
+    include(":${file.name}")
+    project(":${file.name}").projectDir = file
+}
+
+includeProject(new File('sources/core'))
+includeProject(new File('sources/feature_a_api'))
+includeProject(new File('sources/feature_a_impl'))
+includeProject(new File('sources/feature_b_api'))
+includeProject(new File('sources/feature_b_impl'))
